@@ -1,4 +1,7 @@
 # rws2016_moliveira
+Instructions for the Ros Workshop 2016.
+Miguel Oliveira, Vitor Santos.
+February / March 2016.
 
 # Create a git hub repository
 Got to https://github.com/
