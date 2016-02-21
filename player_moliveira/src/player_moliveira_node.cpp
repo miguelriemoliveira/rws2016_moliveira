@@ -70,7 +70,7 @@ class Team
     public: 
 
     //Team constructor
-    Team(string team, vector<string> player_names)
+    Team(string team, vector<string>& player_names)
     {
        name = team; 
 
