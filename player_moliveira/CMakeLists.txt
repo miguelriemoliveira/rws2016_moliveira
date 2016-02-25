@@ -8,10 +8,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -130,16 +131,20 @@ include_directories(
 ## Declare a C++ executable
 # add_executable(player_moliveira_node src/player_moliveira_node.cpp)
 add_executable(player_moliveira_node src/player_moliveira_node.cpp)
-add_executable(player_mriem_node src/player_mriem_node.cpp)
+add_executable(player_moliveira_node_classtest src/player_moliveira_node_classtest.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(player_moliveira_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(player_moliveira_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(player_moliveira_node
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(player_moliveira_node_classtest
+  ${catkin_LIBRARIES}
+)
+
 
 #############
 ## Install ##
