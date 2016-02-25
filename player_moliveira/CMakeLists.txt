@@ -130,6 +130,7 @@ include_directories(
 ## Declare a C++ executable
 # add_executable(player_moliveira_node src/player_moliveira_node.cpp)
 add_executable(player_moliveira_node src/player_moliveira_node.cpp)
+add_executable(player_mriem_node src/player_mriem_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
