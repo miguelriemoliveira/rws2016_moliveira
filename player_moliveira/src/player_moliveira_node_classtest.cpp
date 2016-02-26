@@ -2,9 +2,6 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
-#include <ros/ros.h>
-#include <tf/transform_broadcaster.h>
-#include <turtlesim/Pose.h>
 
 using namespace std;
 
@@ -103,7 +100,7 @@ namespace rws2016_moliveira
 
 } //end of namespace rws2016_moliveira
 
-int main(int argc, char** argv)
+int main()
 {
     std::vector<string> names;
     names.push_back("moliveira");
@@ -112,16 +109,6 @@ int main(int argc, char** argv)
 
     rws2016_moliveira::Team team("green", names);
     team.printTeamInfo();
-
-    ros::init(argc, argv, "player_moliveira_node");
-
-    ros::NodeHandle node;
-    //ros::Subscriber sub = node.subscribe(turtle_name+"/pose", 10, &poseCallback);
-
-    ros::spin();
-    return 0;
-
-
 
     return 1;                                                      
 }
