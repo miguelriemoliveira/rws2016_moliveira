@@ -8,53 +8,75 @@
 
 using namespace std;
 
+/**
+ * @brief The namespace of my player
+ */
 namespace rws2016_moliveira
 {
 
+    /**
+     * @brief Contains a description of a game player
+     */
     class Player
     {
         public:
 
-            //Constructor with the same name as the class
+            /**
+             * @brief The cosntructor
+             *
+             * @param name the name of the player
+             */
             Player(string name) {this->name = name;}
 
-            int setTeamName(int team_index = 0 /*default value*/)
+            /**
+             * @brief Sets the team to which the player belongs
+             *
+             * @param team_index 0,1 or 2 for teams red, green and blue respectively
+             *
+             * @return 
+             */
+            void setTeamName(int team_index = 0 /*default value*/)
             {
                 switch (team_index)
                 {
                     case 0: 
-                        return setTeamName("green"); break;
+                        setTeamName("green"); break;
                     case 1: 
-                        return setTeamName("green"); break;
+                        setTeamName("green"); break;
                     case 2: 
-                        return setTeamName("blue");  break;
+                        setTeamName("blue");  break;
                     default: 
                         cout << "wrong team index given. Cannot set team" << endl; break;
                 }
             }
-
-            //Set team name, if given a correct team name (accessor)
-            int setTeamName(string team)
+            /**
+             * @brief Overloaded method to set team name
+             *
+             * @param team a string with the team name
+             */
+            void setTeamName(string team)
             {
                 if (team=="red" || team=="green" || team=="blue")
                 {
                     this->team = team;
-                    return 1;
                 }
                 else
                 {
                     cout << "cannot set team name to " << team << endl;
-                    return 0;
                 }
             }
 
-            //Gets team name (accessor)
+            /**
+             * @brief returns the team to which the player belongs
+             *
+             * @return a string with the team name
+             */
             string getTeamName(void) {return team;}
 
             /**
              * @brief Gets the pose (calls updatePose first)
              *
-             * @return the transform
+             * @return the transform from map to the /moliveira local reference frame
              */
             tf::Transform getPose(void)
             {
@@ -63,7 +85,7 @@ namespace rws2016_moliveira
                 try{
                     listener.lookupTransform("/map", name, ros::Time(0), st);
                 }
-                catch (tf::TransformException ex){
+                catch (tf::TransformException& ex){
                     ROS_ERROR("%s",ex.what());
                     ros::Duration(1.0).sleep();
                 }
@@ -74,20 +96,41 @@ namespace rws2016_moliveira
                 return t;
             }
 
-            string name; //A public atribute
+            /**
+             * @brief the name of the player
+             */
+            string name; 
 
         private:
+            /**
+             * @brief The name of the team
+             */
             string team;
+
+            /**
+             * @brief the transform listener object
+             */
             tf::TransformListener listener; //reads tfs from the ros system
     };
 
-    //Class MyPlayer extends class Player
+    /**
+     * @brief MyPlayer extends class Player, i.e., there are additional things I can do with MyPlayer and not with any Player, e.g., to order a movement.
+     */
     class MyPlayer: public Player
     {
         public: 
 
+            /**
+             * @brief The transform publisher object
+             */
             tf::TransformBroadcaster br;
 
+            /**
+             * @brief Constructor
+             *
+             * @param name player name
+             * @param team team name
+             */
             MyPlayer(string name, string team): Player(name)
         {
             setTeamName(team);
@@ -136,11 +179,19 @@ namespace rws2016_moliveira
             }
     };
 
+    /**
+     * @brief Contains a list of all the players on a team
+     */
     class Team
     {
         public: 
 
-            //Team constructor
+            /**
+             * @brief Constructor
+             *
+             * @param team the team name
+             * @param player_names a list with the name of all the players on the team
+             */
             Team(string team, vector<string>& player_names)
             {
                 name = team; 
@@ -156,6 +207,9 @@ namespace rws2016_moliveira
 
             }
 
+            /**
+             * @brief Prints the name of the team and the names of all its players
+             */
             void printTeamInfo(void)
             {
                 cout << "Team " << name << " has the following players:" << endl;
@@ -164,12 +218,27 @@ namespace rws2016_moliveira
                     cout << players[i]->name << endl;
             }
 
+            /**
+             * @brief The team name
+             */
             string name;
+
+            /**
+             * @brief A list of Players
+             */
             vector<boost::shared_ptr<Player> > players;
     };
 
 } //end of namespace rws2016_moliveira
 
+/**
+ * @brief The main function
+ *
+ * @param argc number of command line arguments
+ * @param argv values of command line arguments
+ *
+ * @return result
+ */
 int main(int argc, char** argv)
 {
     //initialize ROS stuff
@@ -178,6 +247,7 @@ int main(int argc, char** argv)
 
     //Creating an instance of class MyPlayer
     rws2016_moliveira::MyPlayer my_player("moliveira", "red");
+    my_player.
 
     //Infinite loop
     ros::Rate loop_rate(10);
@@ -189,16 +259,11 @@ int main(int argc, char** argv)
 
         //Test the move method
         my_player.move(0.1, -M_PI/6);
-
+        my_player.
 
         ros::spinOnce();
         loop_rate.sleep();
     }
 
-    return 0;
-
 
 }
-
-//initia
-
