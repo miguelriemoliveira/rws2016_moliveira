@@ -158,7 +158,7 @@ namespace rws2016_moliveira
                 displacement = (displacement > max_d ? max_d : displacement);
 
                 double min_d =  -0.1; 
-                displacement = (displacement > min_d ? min_d : displacement);
+                displacement = (displacement < min_d ? min_d : displacement);
 
                 double max_t =  (M_PI/60);
                 if (turn_angle > max_t)
