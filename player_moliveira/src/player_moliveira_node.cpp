@@ -5,6 +5,8 @@
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
 #include <tf/transform_broadcaster.h>
+//#include <tf/transform_broadcaster.h>
+
 
 using namespace std;
 
@@ -247,7 +249,6 @@ int main(int argc, char** argv)
 
     //Creating an instance of class MyPlayer
     rws2016_moliveira::MyPlayer my_player("moliveira", "red");
-    my_player.
 
     //Infinite loop
     ros::Rate loop_rate(10);
@@ -259,7 +260,6 @@ int main(int argc, char** argv)
 
         //Test the move method
         my_player.move(0.1, -M_PI/6);
-        my_player.
 
         ros::spinOnce();
         loop_rate.sleep();
