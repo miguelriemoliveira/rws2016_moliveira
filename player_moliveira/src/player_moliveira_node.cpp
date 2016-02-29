@@ -16,6 +16,7 @@ using namespace std;
 namespace rws2016_moliveira
 {
 
+
     /**
      * @brief Contains a description of a game player
      */
@@ -68,6 +69,40 @@ namespace rws2016_moliveira
                 }
             }
 
+            void getDistanceToAllHunters(void)
+            {
+                //for hunter in hunters 
+
+            }
+
+            double getDistance(Player& p)
+            {
+                //computing the distance 
+                string first_refframe = p.name;
+                string second_refframe = name;
+
+                ros::Duration(0.1).sleep(); //To allow the listener to hear messages
+                tf::StampedTransform st; //The pose of the player
+                try{
+                    listener.lookupTransform(first_refframe, second_refframe, ros::Time(0), st);
+                }
+                catch (tf::TransformException& ex){
+                    ROS_ERROR("%s",ex.what());
+                    ros::Duration(1.0).sleep();
+                }
+
+                tf::Transform t;
+                t.setOrigin(st.getOrigin());
+                t.setRotation(st.getRotation());
+
+                double x = t.getOrigin().x();
+                double y = t.getOrigin().y();
+
+                double norm = sqrt(x*x + y*y);
+                return norm;
+
+            }
+
             /**
              * @brief returns the team to which the player belongs
              *
@@ -115,71 +150,6 @@ namespace rws2016_moliveira
             tf::TransformListener listener; //reads tfs from the ros system
     };
 
-    /**
-     * @brief MyPlayer extends class Player, i.e., there are additional things I can do with MyPlayer and not with any Player, e.g., to order a movement.
-     */
-    class MyPlayer: public Player
-    {
-        public: 
-
-            /**
-             * @brief The transform publisher object
-             */
-            tf::TransformBroadcaster br;
-
-            /**
-             * @brief Constructor
-             *
-             * @param name player name
-             * @param team team name
-             */
-            MyPlayer(string name, string team): Player(name)
-        {
-            setTeamName(team);
-
-            //Initialize position to 0,0,0
-            tf::Transform t;
-            t.setOrigin( tf::Vector3(0.0, 0.0, 0.0) );
-            tf::Quaternion q; q.setRPY(0, 0, 0);
-            t.setRotation(q);
-            br.sendTransform(tf::StampedTransform(t, ros::Time::now(), "/map", name));
-        }
-
-            /**
-             * @brief Moves MyPlayer
-             *
-             * @param displacement the liner movement of the player, bounded by [-0.1, 1]
-             * @param turn_angle the turn angle of the player, bounded by  [-M_PI/60, M_PI/60]
-             */
-            void move(double displacement, double turn_angle)
-            {
-                //Put arguments withing authorized boundaries
-                double max_d =  1; 
-                displacement = (displacement > max_d ? max_d : displacement);
-
-                double min_d =  -0.1; 
-                displacement = (displacement < min_d ? min_d : displacement);
-
-                double max_t =  (M_PI/60);
-                if (turn_angle > max_t)
-                    turn_angle = max_t;
-                else if (turn_angle < -max_t)
-                    turn_angle = -max_t;
-
-                //Compute the new reference frame
-                tf::Transform t_mov;
-                t_mov.setOrigin( tf::Vector3(displacement , 0, 0.0) );
-                tf::Quaternion q;
-                q.setRPY(0, 0, turn_angle);
-                t_mov.setRotation(q);
-
-                tf::Transform t = getPose();
-                t = t  * t_mov;
-
-                //Send the new transform to ROS
-                br.sendTransform(tf::StampedTransform(t, ros::Time::now(), "/map", name));
-            }
-    };
 
     /**
      * @brief Contains a list of all the players on a team
@@ -231,6 +201,87 @@ namespace rws2016_moliveira
             vector<boost::shared_ptr<Player> > players;
     };
 
+
+    /**
+     * @brief MyPlayer extends class Player, i.e., there are additional things I can do with MyPlayer and not with any Player, e.g., to order a movement.
+     */
+    class MyPlayer: public Player
+    {
+        public: 
+
+            /**
+             * @brief The transform publisher object
+             */
+            tf::TransformBroadcaster br;
+
+            //vector<string> prey_names;
+            //prey_names.push_back("lalmeida");
+            //rws2016_moliveira::Team prey_team("green", prey_names);
+            //prey_team.printTeamInfo();
+
+            boost::shared_ptr<Team> prey_team;
+
+
+            /**
+             * @brief Constructor
+             *
+             * @param name player name
+             * @param team team name
+             */
+            MyPlayer(string name, string team): Player(name)
+        {
+            setTeamName(team);
+
+            //Initialize position to 0,0,0
+            tf::Transform t;
+            t.setOrigin( tf::Vector3(0.0, 0.0, 0.0) );
+            tf::Quaternion q; q.setRPY(0, 0, 0);
+            t.setRotation(q);
+            br.sendTransform(tf::StampedTransform(t, ros::Time::now(), "/map", name));
+
+            vector<string> prey_names;
+            prey_names.push_back("lalmeida");
+            prey_team = (boost::shared_ptr<Team>) new Team("green", prey_names);
+
+        }
+
+            /**
+             * @brief Moves MyPlayer
+             *
+             * @param displacement the liner movement of the player, bounded by [-0.1, 1]
+             * @param turn_angle the turn angle of the player, bounded by  [-M_PI/60, M_PI/60]
+             */
+            void move(double displacement, double turn_angle)
+            {
+                //Put arguments withing authorized boundaries
+                double max_d =  1; 
+                displacement = (displacement > max_d ? max_d : displacement);
+
+                double min_d =  -0.1; 
+                displacement = (displacement < min_d ? min_d : displacement);
+
+                double max_t =  (M_PI/60);
+                if (turn_angle > max_t)
+                    turn_angle = max_t;
+                else if (turn_angle < -max_t)
+                    turn_angle = -max_t;
+
+                //Compute the new reference frame
+                tf::Transform t_mov;
+                t_mov.setOrigin( tf::Vector3(displacement , 0, 0.0) );
+                tf::Quaternion q;
+                q.setRPY(0, 0, turn_angle);
+                t_mov.setRotation(q);
+
+                tf::Transform t = getPose();
+                t = t  * t_mov;
+
+                //Send the new transform to ROS
+                br.sendTransform(tf::StampedTransform(t, ros::Time::now(), "/map", name));
+            }
+    };
+
+
 } //end of namespace rws2016_moliveira
 
 /**
@@ -250,6 +301,20 @@ int main(int argc, char** argv)
     //Creating an instance of class MyPlayer
     rws2016_moliveira::MyPlayer my_player("moliveira", "red");
 
+
+    //vector<string> myteam_names;
+    //myteam_names.push_back("moliveira");
+    //rws2016_moliveira::Team my_team("red", myteam_names);
+    //my_team.printTeamInfo();
+
+    //vector<string> prey_names;
+    //prey_names.push_back("lalmeida");
+    //rws2016_moliveira::Team prey_team("green", prey_names);
+    //prey_team.printTeamInfo();
+
+    rws2016_moliveira::Player lalmeida_player("lalmeida");
+
+
     //Infinite loop
     ros::Rate loop_rate(10);
     while (ros::ok())
@@ -258,12 +323,16 @@ int main(int argc, char** argv)
         tf::Transform t = my_player.getPose();
         cout << "x = " << t.getOrigin().x() << " y = " << t.getOrigin().y() << endl;
 
+        double dist_from_my_player_to_lalmeida = my_player.getDistance(lalmeida_player);
+        cout << "dist_from_my_player_to_lalmeida = " << dist_from_my_player_to_lalmeida << endl;
+
         //Test the move method
         my_player.move(0.1, -M_PI/6);
 
         ros::spinOnce();
         loop_rate.sleep();
     }
+
 
 
 }
