@@ -69,12 +69,6 @@ namespace rws2016_moliveira
                 }
             }
 
-            void getDistanceToAllHunters(void)
-            {
-                //for hunter in hunters 
-
-            }
-
             double getDistance(Player& p)
             {
                 //computing the distance 
@@ -279,6 +273,21 @@ namespace rws2016_moliveira
                 //Send the new transform to ROS
                 br.sendTransform(tf::StampedTransform(t, ros::Time::now(), "/map", name));
             }
+
+            void getDistanceToAllPreys(void)
+            {
+
+                for (size_t i = 0; i < prey_team->players.size(); ++i )
+                {
+                    double dist_me_to_ith_player = getDistance(*prey_team->players[i]);
+        //cout << "dist_from_my_player_to_lalmeida = " << dist_from_my_player_to_lalmeida << endl;
+                }
+
+                //for hunter in hunters 
+
+            }
+
+
     };
 
 
