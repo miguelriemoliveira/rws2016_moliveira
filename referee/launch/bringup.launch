@@ -25,4 +25,5 @@
   <node pkg="player_mkasaei" type="player_mkasaei_node" name="mkasaei" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
   <node pkg="player_tsimoes" type="player_tsimoes_node" name="tsimoes" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
   <node pkg="player_nshafii" type="player_nshafii_node" name="nshafii" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_mlopes" type="player_mlopes_node" name="mlopes" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
 </launch>
