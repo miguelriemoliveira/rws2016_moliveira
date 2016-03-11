@@ -14,6 +14,13 @@
   <!--Launch the players-->
   <node pkg="player_moliveira" type="player_moliveira_node" name="moliveira" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
   <node pkg="player_lalmeida" type="player_lalmeida_node" name="lalmeida" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
-  <!--<node pkg="player_pdias" type="player_pdias_node" name="pdias" output="screen" respawn="true" respawn_delay="$(arg delay)"/>-->
-
-</launch>
+  <node pkg="player_mlopes" type="player_mlopes_node" name="mlopes" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_aabdolmaleki" type="player_aabdolmaleki_node" name="aabdolmaleki" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_pdias" type="player_pdias_node" name="pdias" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_jalves" type="player_jalves_node" name="jalves" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_dsilva" type="player_dsilva_node" name="dsilva" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_pkumars" type="player_pkumars_node" name="pkumars" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_rsalgueiro" type="player_rsalgueiro_node" name="rsalgueiro" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_torrao" type="player_torrao_node" name="torrao" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_mkasaei" type="player_mkasaei_node" name="mkasaei" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  </launch>
