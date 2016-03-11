@@ -1,10 +1,10 @@
-#teamRed: ["moliveira", "lalmeida", "mlopes"]
-#teamGreen: ["pdias", "jalves", "dsilva"]
-#teamBlue: ["rsalgueiro", "tsimoes", "mkasaei"]
-
-teamRed: ["moliveira"]
-teamGreen: ["lalmeida"]
+teamRed: ["moliveira", "lalmeida", "mlopes"]
+teamGreen: ["pdias", "jalves", "dsilva"]
 teamBlue: ["rsalgueiro", "tsimoes", "mkasaei"]
+
+#teamRed: ["moliveira"]
+#teamGreen: ["lalmeida"]
+#teamBlue: ["rsalgueiro", "tsimoes", "mkasaei"]
 
 hunting_distance: 0.5
 game_duration: 120
