@@ -74,7 +74,7 @@ int main(int argc, char **argv)
         //Draw text
         marker.id = count++;
         marker.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
-        marker.scale.x = 0.5; marker.scale.y = 0.1; marker.scale.z = 0.3;
+        marker.scale.x = 0.8; marker.scale.y = 0.2; marker.scale.z = 0.5;
         marker.color.a = 1.0; // Don't forget to set the alpha!
         marker.color.r = 1.0; marker.color.g = 0.0; marker.color.b = 0.0;
 
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
         //Draw text
         marker.id = count++;
         marker.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
-        marker.scale.x = 0.5; marker.scale.y = 0.1; marker.scale.z = 0.3;
+        marker.scale.x = 0.8; marker.scale.y = 0.2; marker.scale.z = 0.5;
         marker.color.a = 1.0; // Don't forget to set the alpha!
         marker.color.r = 0.0; marker.color.g = 1.0; marker.color.b = 0.0;
         marker.text = teamB[i];
@@ -138,7 +138,7 @@ int main(int argc, char **argv)
         //Draw text
         marker.id = count++;
         marker.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
-        marker.scale.x = 0.5; marker.scale.y = 0.1; marker.scale.z = 0.3;
+        marker.scale.x = 0.8; marker.scale.y = 0.2; marker.scale.z = 0.5;
         marker.color.a = 1.0; // Don't forget to set the alpha!
         marker.color.r = 0.0; marker.color.g = 0.0; marker.color.b = 1.0;
         marker.text = teamC[i];

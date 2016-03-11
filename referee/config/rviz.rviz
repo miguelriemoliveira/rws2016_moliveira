@@ -99,16 +99,10 @@ Visualization Manager:
       Name: Killing
       Namespaces:
         aabdolmaleki: true
-        dsilva: true
-        jalves: true
         mkasaei: true
         mlopes: true
-        moliveira: true
-        nshafii: true
-        pdias: true
         pkumars: true
         rsalgueiro: true
-        torrao: true
         tsimoes: true
       Queue Size: 100
       Value: true
@@ -144,7 +138,7 @@ Visualization Manager:
         Value: false
       Name: Current View
       Near Clip Distance: 0.01
-      Scale: 45.741
+      Scale: 35.4218
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
       X: 1.23195
