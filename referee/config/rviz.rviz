@@ -101,14 +101,15 @@ Visualization Manager:
         aabdolmaleki: true
         dsilva: true
         jalves: true
-        lalmeida: true
         mkasaei: true
+        mlopes: true
         moliveira: true
         nshafii: true
         pdias: true
         pkumars: true
         rsalgueiro: true
         torrao: true
+        tsimoes: true
       Queue Size: 100
       Value: true
   Enabled: true
@@ -134,7 +135,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: 0.00499994
+      Angle: -6.14673e-08
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
@@ -143,11 +144,11 @@ Visualization Manager:
         Value: false
       Name: Current View
       Near Clip Distance: 0.01
-      Scale: 37.2713
+      Scale: 45.741
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 1.28007
-      Y: -0.0973251
+      X: 1.23195
+      Y: 0.588774
     Saved: ~
 Window Geometry:
   Displays:

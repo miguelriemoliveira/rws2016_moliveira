@@ -12,7 +12,7 @@
   <node name="rviz" pkg="rviz" type="rviz" args="--display-config $(find referee)/config/rviz.rviz" required="true"/>
   <node name="draw_teams" pkg="referee" type="draw_teams"/>
   <!--Launch the players-->
-  <node pkg="player_moliveira" type="player_moliveira_node" name="moliveira" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <!--<node pkg="player_moliveira" type="player_moliveira_node" name="moliveira" output="screen" respawn="true" respawn_delay="$(arg delay)"/>-->
   <node pkg="player_lalmeida" type="player_lalmeida_node" name="lalmeida" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
   <!--<node pkg="player_mlopes" type="player_mlopes_node" name="mlopes" output="screen" respawn="true" respawn_delay="$(arg delay)"/>-->
   <node pkg="player_aabdolmaleki" type="player_aabdolmaleki_node" name="aabdolmaleki" output="screen" respawn="true" respawn_delay="$(arg delay)"/>

@@ -100,6 +100,36 @@ namespace rws2016_moliveira
 
             }
 
+            double getAngleFromPrey(string player_name)
+            {
+                //computing the distance 
+                string first_refframe = player_name;
+                string second_refframe = name;
+
+                ros::Duration(0.01).sleep(); //To allow the listener to hear messages
+                tf::StampedTransform st; //The pose of the player
+                try{
+                    listener.lookupTransform(first_refframe, second_refframe, ros::Time(0), st);
+                }
+                catch (tf::TransformException& ex){
+                    ROS_ERROR("%s",ex.what());
+                    ros::Duration(0.1).sleep();
+                    return 0;
+                }
+
+                tf::Transform t;
+                t.setOrigin(st.getOrigin());
+                t.setRotation(st.getRotation());
+
+                double x = t.getOrigin().x();
+                double y = t.getOrigin().y();
+
+                double angle = atan2(y,x);
+                return angle;
+
+            }
+
+
             double getAngle(string player_name)
             {
                 //computing the distance 
@@ -403,21 +433,24 @@ namespace rws2016_moliveira
                 getNameOfClosestPrey(closest_prey, dist_closest_prey);
                 ROS_INFO("Closest prey is %s", closest_prey.c_str());
 
-                string closest_hunter; double dist_closest_hunter;
-                getNameOfClosestHunter(closest_hunter, dist_closest_hunter);
-                ROS_INFO("Closest hunter is %s", closest_hunter.c_str());
+                //string closest_hunter; double dist_closest_hunter;
+                //getNameOfClosestHunter(closest_hunter, dist_closest_hunter);
+                //ROS_INFO("Closest hunter is %s", closest_hunter.c_str());
+
 
 
                 //Step 2
                 double angle = 0;
-                if (dist_closest_hunter <  dist_closest_prey)
-                {
-                    angle = getAngle(closest_hunter) + M_PI;
-                }
-                else
-                {
-                    angle = getAngle(closest_prey);
-                }
+                //if (dist_closest_hunter <  dist_closest_prey)
+                //{
+                    //angle = getAngle(closest_hunter) + M_PI;
+                //}
+                //else
+                //{
+                    //angle = getAngle(closest_prey);
+                //}
+
+                 angle = getAngleFromPrey(closest_prey);
 
                 //Step 3
                 double displacement = msg.cat; //I am a cat, others may choose another animal
