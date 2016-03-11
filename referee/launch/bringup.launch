@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- -->
+<launch>
+  <arg name="delay" default="10"/>
+  <!--Load the parameters-->
+  <rosparam command="load" file="$(find referee)/params/default.yaml"/>
+  <!--Launch the referee-->
+  <node pkg="referee" type="referee.py" name="referee"/>
+  <!--Launch the killer-->
+  <node pkg="referee" type="killer.py" name="killer"/>
+  <!--Launch the visualization-->
+  <node name="rviz" pkg="rviz" type="rviz" args="--display-config $(find referee)/config/rviz.rviz" required="true"/>
+  <node name="draw_teams" pkg="referee" type="draw_teams"/>
+  <!--Launch the players-->
+  <node pkg="player_moliveira" type="player_moliveira_node" name="moliveira" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+  <node pkg="player_lalmeida" type="player_lalmeida_node" name="lalmeida" output="screen" respawn="true" respawn_delay="$(arg delay)"/>
+</launch>

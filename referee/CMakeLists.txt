@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  rws2016_msgs
+  rws2016_libs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -128,16 +130,16 @@ include_directories(
 # add_dependencies(referee ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(referee_node src/referee_node.cpp)
+add_executable(draw_teams src/draw_teams.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(referee_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(referee_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(draw_teams
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##

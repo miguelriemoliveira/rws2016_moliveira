@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(player_moliveira)
+project(rws2016_libs)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -8,13 +8,10 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  tf
-  rws2016_libs
-  rws2016_msgs
 )
 
 ## System dependencies are found with CMake's conventions
-find_package(Boost REQUIRED COMPONENTS system)
+# find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -103,10 +100,10 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- #INCLUDE_DIRS include
- #LIBRARIES player_moliveira
- CATKIN_DEPENDS roscpp rospy std_msgs
- DEPENDS system_lib
+ INCLUDE_DIRS include
+ LIBRARIES rws2016_libs
+#  CATKIN_DEPENDS roscpp rospy std_msgs
+#  DEPENDS system_lib
 )
 
 ###########
@@ -117,36 +114,31 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
-# add_library(player_moliveira
-#   src/${PROJECT_NAME}/player_moliveira.cpp
-# )
+add_library(rws2016_libs
+  src/team_info.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(player_moliveira ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(rws2016_libs ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(player_moliveira_node src/player_moliveira_node.cpp)
-add_executable(player_moliveira_node src/player_moliveira_node.cpp)
-add_executable(player_moliveira_node_classtest src/player_moliveira_node_classtest.cpp)
+# add_executable(rws2016_libs_node src/rws2016_libs_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(player_moliveira_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(rws2016_libs_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(player_moliveira_node
+target_link_libraries(rws2016_libs
   ${catkin_LIBRARIES}
 )
-target_link_libraries(player_moliveira_node_classtest
-  ${catkin_LIBRARIES}
-)
-
 
 #############
 ## Install ##
@@ -163,7 +155,7 @@ target_link_libraries(player_moliveira_node_classtest
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS player_moliveira player_moliveira_node
+# install(TARGETS rws2016_libs rws2016_libs_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -188,7 +180,7 @@ target_link_libraries(player_moliveira_node_classtest
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_player_moliveira.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_rws2016_libs.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
