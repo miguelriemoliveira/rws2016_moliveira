@@ -249,6 +249,16 @@ namespace rws2016_moliveira
 
             boost::shared_ptr<ros::Subscriber> _sub; 
 
+            ~MyPlayer()   
+        {
+            tf::Transform t;
+            t.setOrigin( tf::Vector3(15, 15, 0.0) );
+            tf::Quaternion q; q.setRPY(0, 0, 0);
+            t.setRotation(q);
+            br.sendTransform(tf::StampedTransform(t, ros::Time::now(), "/map", name));
+            br.sendTransform(tf::StampedTransform(t, ros::Time::now() + ros::Duration(2), "/map", name));
+        }
+
             /**
              * @brief Constructor
              *
