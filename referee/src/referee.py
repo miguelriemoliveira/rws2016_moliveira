@@ -87,7 +87,7 @@ def talker():
     teamB = rospy.get_param('/teamGreen')
     teamC = rospy.get_param('/teamBlue')
 
-    rospy.Timer(rospy.Duration(0.01), timerCallback, oneshot=False)
+    rospy.Timer(rospy.Duration(0.05), timerCallback, oneshot=False)
     rospy.Timer(rospy.Duration(game_duration), gameEndCallback, oneshot=True)
     game_start = rospy.get_time()
 
