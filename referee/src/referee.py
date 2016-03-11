@@ -36,6 +36,7 @@ def timerCallback(event):
     a.dog = random.random()/10
     a.cat = random.random()/10
     a.turtle = random.random()/10
+
     if not rospy.is_shutdown():
         pub.publish(a)
 
@@ -87,7 +88,7 @@ def talker():
     teamB = rospy.get_param('/teamGreen')
     teamC = rospy.get_param('/teamBlue')
 
-    rospy.Timer(rospy.Duration(0.05), timerCallback, oneshot=False)
+    rospy.Timer(rospy.Duration(0.1), timerCallback, oneshot=False)
     rospy.Timer(rospy.Duration(game_duration), gameEndCallback, oneshot=True)
     game_start = rospy.get_time()
 

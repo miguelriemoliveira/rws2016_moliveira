@@ -340,7 +340,7 @@ namespace rws2016_moliveira
                 br.sendTransform(tf::StampedTransform(t, ros::Time::now(), "/map", name));
             }
 
-            string getNameOfClosestPrey(void)
+            void getNameOfClosestPrey(string& name, double& distance)
             {
                 double prey_dist = getDistance(*prey_team->players[0]);
                 string prey_name = prey_team->players[0]->name;
@@ -356,8 +356,30 @@ namespace rws2016_moliveira
                     }
                 }
 
-                return prey_name;
+                name = prey_name;
+                distance = prey_dist;
             }
+
+            void getNameOfClosestHunter(string& name, double& distance)
+            {
+                double hunter_dist = getDistance(*hunter_team->players[0]);
+                string hunter_name = hunter_team->players[0]->name;
+
+                for (size_t i = 1; i < hunter_team->players.size(); ++i)
+                {
+                    double d = getDistance(*hunter_team->players[i]);
+
+                    if (d < hunter_dist) //A new minimum
+                    {
+                        hunter_dist = d;
+                        hunter_name = hunter_team->players[i]->name;
+                    }
+                }
+
+                name = hunter_name;
+                distance = hunter_dist;
+            }
+
 
 
             /**
@@ -371,17 +393,31 @@ namespace rws2016_moliveira
 
                 //I will encode a very simple hunting behaviour:
                 //
-                //1. Get closest prey name
+                //1. Get names of closest prey and hunter 
                 //2. Get angle to closest prey
                 //3. Compute maximum displacement
                 //4. Move maximum displacement towards angle to prey (limited by min, max)
 
                 //Step 1
-                string closest_prey = getNameOfClosestPrey();
+                string closest_prey; double dist_closest_prey;
+                getNameOfClosestPrey(closest_prey, dist_closest_prey);
                 ROS_INFO("Closest prey is %s", closest_prey.c_str());
 
+                string closest_hunter; double dist_closest_hunter;
+                getNameOfClosestHunter(closest_hunter, dist_closest_hunter);
+                ROS_INFO("Closest hunter is %s", closest_hunter.c_str());
+
+
                 //Step 2
-                double angle = getAngle(closest_prey);
+                double angle = 0;
+                if (dist_closest_hunter <  dist_closest_prey)
+                {
+                    angle = getAngle(closest_hunter) + M_PI;
+                }
+                else
+                {
+                    angle = getAngle(closest_prey);
+                }
 
                 //Step 3
                 double displacement = msg.cat; //I am a cat, others may choose another animal

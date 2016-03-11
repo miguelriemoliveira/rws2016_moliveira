@@ -98,18 +98,17 @@ Visualization Manager:
       Marker Topic: /kill_markers
       Name: Killing
       Namespaces:
+        aabdolmaleki: true
         dsilva: true
         jalves: true
         lalmeida: true
         mkasaei: true
-        mlopes: true
         moliveira: true
         nshafii: true
         pdias: true
         pkumars: true
         rsalgueiro: true
         torrao: true
-        tsimoes: true
       Queue Size: 100
       Value: true
   Enabled: true
@@ -144,7 +143,7 @@ Visualization Manager:
         Value: false
       Name: Current View
       Near Clip Distance: 0.01
-      Scale: 42.9726
+      Scale: 37.2713
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
       X: 1.28007
