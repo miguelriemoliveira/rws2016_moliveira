@@ -264,7 +264,7 @@ namespace rws2016_moliveira
 
             if (!team_info(node, myTeam_names, myHunters_names, myPreys_names, myTeamId, myHuntersId, myPreysId))
                 ROS_ERROR("Something went wrong reading teams");
-        
+
             my_team = (boost::shared_ptr<Team>) new Team(myTeamId, myTeam_names);
             hunter_team = (boost::shared_ptr<Team>) new Team(myHuntersId, myHunters_names);
             prey_team = (boost::shared_ptr<Team>) new Team(myPreysId, myPreys_names);
@@ -276,7 +276,10 @@ namespace rws2016_moliveira
             //Initialize position according to team
             ros::Duration(0.5).sleep(); //sleep to make sure the time is correct
             tf::Transform t;
-            srand((unsigned)time(NULL)); // To start the player in a random location
+            //srand((unsigned)time(NULL)); // To start the player in a random location
+            struct timeval t1;      
+            gettimeofday(&t1, NULL);
+            srand(t1.tv_usec);
             double X=((((double)rand()/(double)RAND_MAX) ) * 2 -1) * 5 ;
             double Y=((((double)rand()/(double)RAND_MAX) ) * 2 -1) * 5 ;
             t.setOrigin( tf::Vector3(X, Y, 0.0) );

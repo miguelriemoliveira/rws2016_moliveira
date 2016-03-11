@@ -36,7 +36,7 @@ __status__ = "Development"
 #########################
 
 #Taken from https://github.com/miguelriemoliveira/rws2016_moliveira/wiki/List-of-players-and-teams
-urls = ["https://github.com/miguelriemoliveira/rws2016_moliveira.git", "https://github.com/Luis93A/rws2016_lalmeida.git", "https://github.com/marioclaudiolopes/rws2016_mlopes.git", "https://github.com/pmdjdias/rws2016_pdias.git", "https://github.com/jbga/rws2016_jalves.git", "https://github.com/Dr1T/rws2016_rws2016_dsilva.git", "https://github.com/pkr97/rws2016_pkumars", "https://github.com/rodrigosalgueiro/rws2016_rsalgueiro.git", "https://github.com/tiagofsimoes/rws2016_tsimoes.git", "https://github.com/torrambo/rws2016_torrao.git", "https://github.com/MohammadKasaei/rws2016_mkasaei.git", "https://github.com/abbasabibi/rws2016_aabdolmaleki.git"]
+urls = ["https://github.com/miguelriemoliveira/rws2016_moliveira.git", "https://github.com/Luis93A/rws2016_lalmeida.git", "https://github.com/marioclaudiolopes/rws2016_mlopes.git", "https://github.com/pmdjdias/rws2016_pdias.git", "https://github.com/jbga/rws2016_jalves.git", "https://github.com/Dr1T/rws2016_rws2016_dsilva.git", "https://github.com/pkr97/rws2016_pkumars", "https://github.com/rodrigosalgueiro/rws2016_rsalgueiro.git", "https://github.com/tiagofsimoes/rws2016_tsimoes.git", "https://github.com/torrambo/rws2016_torrao.git", "https://github.com/MohammadKasaei/rws2016_mkasaei.git", "https://github.com/abbasabibi/rws2016_aabdolmaleki.git", "https://github.com/nshafii/rws2016_nshafii.git"]
 
 #Can be changed with command line argument clone, i.e., ./pull_all.py clone
 clone_mode = False
